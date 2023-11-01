@@ -3,6 +3,7 @@
 """ Console Module """
 import cmd
 import sys
+import re
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -30,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
         'max_guest': int, 'price_by_night': int,
         'latitude': float, 'longitude': float
     }
-
+    
     def preloop(self):
         """Prints if isatty is false"""
         if not sys.__stdin__.isatty():
@@ -113,16 +114,33 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ Overrides the emptyline method of CMD """
         pass
+        
+    def match_key_value(string):
+        pattern = r'\w+="[^"]+"'
+        if re.match(pattern, string):
+            return True
+        else:
+            return False
 
     def do_create(self, args):
+        tokens = args.split(" ")
         """ Create an object of any class"""
         if not args:
             print("** class name missing **")
-            return
-        elif args not in HBNBCommand.classes:
+            return 
+        elif tokens[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[tokens[0]]()
+        pattern = r'\w+="[^"]+"'
+        for j in range(1, len(tokens)):
+            if re.match(pattern, tokens[j]):
+                key_value = tokens[j].split("=")
+                if type(key_value[1]) == str:
+                	key_value[1] = key_value[1].replace("_", " ")
+                    new_instance.key_value[0] = key_value[1]
+            else:
+                pass                
         storage.save()
         print(new_instance.id)
         storage.save()
