@@ -1,18 +1,18 @@
 -- MySQL setup script
 -- Database and user information
 
-SET @DB_NAME = 'hbnb_test_db';
-SET @DB_USER = 'hbnb_test';
-SET @DB_PASSWORD = 'hbnb_test_pwd';
+SET hbnb_test_db = 'hbnb_test_db';
+SET hbnb_test = 'hbnb_test';
+SET hbnb_test_pwd = 'hbnb_test_pwd';
 
 -- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS @DB_NAME;
+CREATE DATABASE IF NOT EXISTS hbnb_test_db;
 
 -- Create the user if it doesn't exist
-CREATE USER IF NOT EXISTS @DB_USER@'localhost' IDENTIFIED BY @DB_PASSWORD;
+CREATE USER IF NOT EXISTS hbnb_test@'localhost' IDENTIFIED BY hbnb_test_pwd;
 
 -- Grant privileges to the user on the database
-GRANT ALL PRIVILEGES ON @DB_NAME.* TO @DB_USER@'localhost';
+GRANT ALL PRIVILEGES ON hbnb_test_db.* TO hbnb_test@'localhost';
 
 -- Grant SELECT privilege on the performance_schema database
-GRANT SELECT ON performance_schema.* TO @DB_USER@'localhost';
+GRANT SELECT ON performance_schema.* TO hbnb_test@'localhost';
