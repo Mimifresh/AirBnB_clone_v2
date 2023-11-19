@@ -141,4 +141,5 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 ```
 Chukwu Miracle <mimigolld@gmail.com>
 Samuel Adeyemi <adeyemifrodo@gmail.com>
+---
 <br>
