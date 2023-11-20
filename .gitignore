@@ -1,0 +1,6 @@
+.my.cnf.4791
+.my.output.4791
+.mysql.4791
+models/__pycache__/
+setup_mysql_dev.sql
+
